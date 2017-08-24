@@ -11,6 +11,15 @@ rendered image of that scene as groundtruth. Scenes are generated and rendered i
 now it is very simple: the scene is a sphere with the default Blender material and a sun lamp
 with random direction, color and strength.
 
+After about a few hundred epochs, it successfully learned how to render this simple scene:
+
+|         | Groundtruth           | Prediction  |
+| ------------- |:-------------:| -----:|
+| Train      | ![alt text](src/train_groundtruth.png "Train groundtruth") | ![alt text](src/train_prediction.png "Train prediction") |
+| Validation      | ![alt text](src/validation_groundtruth.png "Train groundtruth") | ![alt text](src/validation_prediction.png "Train prediction") |
+
+There are a few failure cases as well.
+
 The CNN architecture is copied from the
 [Generating Faces with Torch](http://torch.ch/blog/2015/11/13/gan.html)
 blog post by Larsen and Sønderby on the Torch website.
@@ -31,6 +40,8 @@ Go to [data](data/README.md) for instruction on how to generate the dataset.
 Execute `qlua main.lua` to launch training (qlua is needed for displaying images along the way).
 Some parameters can be changed in each file. It uses the GPU by default but it can be disabled
 in the main.lua file in line 7.
+
+(TODO: add some images of rendered scenes from training and validation steps)
 
 # Ideas for later
 Describe a scene with an object in terms of triangles
