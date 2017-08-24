@@ -4,7 +4,8 @@ require 'image'
 --Params
 opt = {
     model_filename = 'work/model.net',
-    cuda = true
+    cuda = true,
+    save_images = true
 }
 
 torch.setdefaulttensortype('torch.FloatTensor')

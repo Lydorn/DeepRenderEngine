@@ -124,6 +124,10 @@ function train()
             -- Display first image of batch
             w_train_target = image.display{image=targets[1], offscreen=false, win=w_train_target}
             w_train_output = image.display{image=outputs[1], offscreen=false, win=w_train_output}
+            if opt.save_images then
+                image.save("train_groundtruth.png", targets[1])
+                image.save("train_prediction.png", outputs[1])
+            end
 
 
             -- estimate df/dW

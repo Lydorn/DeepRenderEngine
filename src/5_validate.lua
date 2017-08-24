@@ -64,6 +64,10 @@ function validate()
         -- Display first image of batch
         w_val_target = image.display{image=targets[1], offscreen=false, win=w_val_target}
         w_val_pred = image.display{image=preds[1], offscreen=false, win=w_val_pred}
+        if opt.save_images then
+            image.save("validation_groundtruth.png", targets[1])
+            image.save("validation_prediction.png", preds[1])
+        end
 
         -- update global error
         global_err = global_err + f
