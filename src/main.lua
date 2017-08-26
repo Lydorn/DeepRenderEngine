@@ -5,7 +5,8 @@ require 'image'
 opt = {
     model_filename = 'work/model.net',
     cuda = true,
-    save_images = true
+    visualization = true,
+    save_visualization = true
 }
 
 torch.setdefaulttensortype('torch.FloatTensor')
@@ -20,6 +21,7 @@ dofile '2_model.lua'
 dofile '3_loss.lua'
 dofile '4_train.lua'
 dofile '5_validate.lua'
+dofile 'visualization.lua'
 
 ----------------------------------------------------------------------
 print '==> training!'

@@ -62,11 +62,15 @@ function validate()
         --print(preds)
 
         -- Display first image of batch
-        w_val_target = image.display{image=targets[1], offscreen=false, win=w_val_target}
-        w_val_pred = image.display{image=preds[1], offscreen=false, win=w_val_pred}
-        if opt.save_images then
-            image.save("validation_groundtruth.png", targets[1])
-            image.save("validation_prediction.png", preds[1])
+        if opt.visualization then
+            local batch_targets_image = expandBatchToSpatial(targets:float())
+            local batch_preds_image = expandBatchToSpatial(preds:float())
+            w_val_target = image.display{image=batch_targets_image, offscreen=false, win=w_val_target}
+            w_val_pred = image.display{image=batch_preds_image, offscreen=false, win=w_val_pred}
+            if opt.save_visualization then
+                image.save("validation_batch_groundtruths.png", batch_targets_image)
+                image.save("validation_batch_predictions.png", batch_preds_image)
+            end
         end
 
         -- update global error

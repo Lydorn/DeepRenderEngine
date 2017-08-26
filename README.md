@@ -11,14 +11,26 @@ rendered image of that scene as groundtruth. Scenes are generated and rendered i
 now it is very simple: the scene is a sphere with the default Blender material and a sun lamp
 with random direction, color and strength.
 
-After about a few hundred epochs, it successfully learned how to render this simple scene:
+After the first epoch, the predictions are still quite random:
 
-|         | Groundtruth           | Prediction  |
-| ------------- |:-------------:| -----:|
-| Train      | ![alt text](src/train_groundtruth.png "Train groundtruth") | ![alt text](src/train_prediction.png "Train prediction") |
-| Validation      | ![alt text](src/validation_groundtruth.png "Train groundtruth") | ![alt text](src/validation_prediction.png "Train prediction") |
+|            | Groundtruth | Prediction |
+| ---------- |:-------------:| :-----:|
+| Train      | ![alt text](src/train_batch_groundtruths.epoch1.png "Train groundtruth") | ![alt text](src/train_batch_predictions.epoch1.png "Train prediction") |
+| Validation | ![alt text](src/validation_batch_groundtruths.epoch1.png "Train groundtruth") | ![alt text](src/validation_batch_predictions.epoch1.png "Train prediction") |
 
-There are a few failure cases as well.
+After 50 epochs, it learned how to colorize the sphere:
+
+|            | Groundtruth           | Prediction  |
+| ---------- |:-------------:| :-----:|
+| Train      | ![alt text](src/train_batch_groundtruths.epoch50.png "Train groundtruth") | ![alt text](src/train_batch_predictions.epoch50.png "Train prediction") |
+| Validation | ![alt text](src/validation_batch_groundtruths.epoch50.png "Train groundtruth") | ![alt text](src/validation_batch_predictions.epoch50.png "Train prediction") |
+
+After 350 epochs, it started to better learn shadows (they slowly become sharper in the next hundreds of epochs):
+
+|            | Groundtruth           | Prediction  |
+| ---------- |:-------------:| :-----:|
+| Train      | ![alt text](src/train_batch_groundtruths.epoch350.png "Train groundtruth") | ![alt text](src/train_batch_predictions.epoch350.png "Train prediction") |
+| Validation | ![alt text](src/validation_batch_groundtruths.epoch350.png "Train groundtruth") | ![alt text](src/validation_batch_predictions.epoch350.png "Train prediction") |
 
 The CNN architecture is copied from the
 [Generating Faces with Torch](http://torch.ch/blog/2015/11/13/gan.html)
@@ -44,7 +56,7 @@ in the main.lua file in line 7.
 (TODO: add some images of rendered scenes from training and validation steps)
 
 # Ideas for later
-Describe a scene with an object in terms of triangles
+Describe a scene with in terms of triangles
 
 Use a RNN to input a list of triangles with varying length
 

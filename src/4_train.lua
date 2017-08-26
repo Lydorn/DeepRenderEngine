@@ -121,21 +121,24 @@ function train()
             local outputs = model:forward(inputs)
             local f = criterion:forward(outputs, targets)
 
-            -- Display first image of batch
-            w_train_target = image.display{image=targets[1], offscreen=false, win=w_train_target}
-            w_train_output = image.display{image=outputs[1], offscreen=false, win=w_train_output}
-            if opt.save_images then
-                image.save("train_groundtruth.png", targets[1])
-                image.save("train_prediction.png", outputs[1])
-            end
-
-
             -- estimate df/dW
             local df_do = criterion:backward(outputs, targets)
             model:backward(inputs, df_do)
 
             -- update global error
             global_err = global_err + f
+
+            -- Display first image of batch
+            if opt.visualization then
+                local batch_targets_image = expandBatchToSpatial(targets:float())
+                local batch_outputs_image = expandBatchToSpatial(outputs:float())
+                w_train_target = image.display{image=batch_targets_image, offscreen=false, win=w_train_target}
+                w_train_output = image.display{image=batch_outputs_image, offscreen=false, win=w_train_output}
+                if opt.save_visualization then
+                    image.save("train_batch_groundtruths.png", batch_targets_image)
+                    image.save("train_batch_predictions.png", batch_outputs_image)
+                end
+            end
 
             -- return f and df/dX
             return f,gradParameters
