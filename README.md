@@ -53,8 +53,6 @@ Execute `qlua main.lua` to launch training (qlua is needed for displaying images
 Some parameters can be changed in each file. It uses the GPU by default but it can be disabled
 in the main.lua file in line 7.
 
-(TODO: add some images of rendered scenes from training and validation steps)
-
 # Ideas for later
 Describe a scene with in terms of triangles
 
